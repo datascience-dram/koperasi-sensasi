@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Koperasi Sensasi Maju Bersama | Simpan Pinjam Terpercaya</title>
+<meta name="description" content="Koperasi Simpan Pinjam Sensasi Maju Bersama - Membangun Kesejahteraan Bersama Melalui Keuangan yang Aman dan Transparan.">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          primary: { DEFAULT: '#10B981', dark: '#059669', light: '#ECFDF5' },
+          secondary: '#0F172A',
+          accent: '#FACC15',
+          bg: '#F8FAFC',
+          ink: '#1E293B',
+        },
+        fontFamily: {
+          heading: ['Poppins', 'sans-serif'],
+          body: ['"Plus Jakarta Sans"', 'sans-serif'],
+        },
+        borderRadius: { card: '20px' },
+        boxShadow: {
+          soft: '0 4px 24px -8px rgba(15, 23, 42, 0.08)',
+          softer: '0 2px 12px -4px rgba(15, 23, 42, 0.06)',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Plus Jakarta Sans', sans-serif; background:#F8FAFC; color:#1E293B; }
+  h1,h2,h3,h4, .font-heading { font-family: 'Poppins', sans-serif; }
+
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+
+  .navlink { position: relative; }
+  .navlink::after {
+    content:''; position:absolute; left:0; bottom:-4px; height:2px; width:0%;
+    background:#10B981; transition: width .25s ease;
+  }
+  .navlink:hover::after { width:100%; }
+
+  .card-hover { transition: transform .3s ease, box-shadow .3s ease; }
+  .card-hover:hover { transform: translateY(-6px); box-shadow: 0 12px 32px -10px rgba(16,185,129,0.25); }
+
+  .growth-line { stroke-dasharray: 300; stroke-dashoffset: 300; animation: draw 2.4s ease forwards .3s; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+
+  .float-slow { animation: floaty 5s ease-in-out infinite; }
+  @keyframes floaty { 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-10px);} }
+
+  .dot-grid {
+    background-image: radial-gradient(circle, rgba(16,185,129,0.18) 1.5px, transparent 1.5px);
+    background-size: 22px 22px;
+  }
+
+  ::-webkit-scrollbar { width:10px; }
+  ::-webkit-scrollbar-track { background:#F8FAFC; }
+  ::-webkit-scrollbar-thumb { background:#10B981; border-radius:8px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .growth-line, .float-slow { animation: none !important; transition: none !important; opacity:1 !important; transform:none !important; }
+  }
+
+  .mobile-menu { transition: max-height .35s ease, opacity .3s ease; }
+</style>
+</head>
+
+<body class="antialiased">
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/80 backdrop-blur-md border-b border-slate-100">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 h-16 md:h-20 flex items-center justify-between">
+    <a href="#beranda" class="flex items-center gap-3">
+    <img
+        src="Logo.jpeg"
+        alt="Logo Koperasi Sensasi Maju Bersama"
+        class="h-12 w-auto object-contain"
+    >
+
+    <div class="leading-tight">
+        <h1 class="font-heading font-bold text-secondary text-sm md:text-base">
+            Koperasi
+        </h1>
+        <p class="text-xs md:text-sm text-slate-600">
+            Sensasi Maju Bersama
+        </p>
+    </div>
+    </a>
+
+    <nav class="hidden lg:flex items-center gap-9 text-sm font-medium text-ink">
+      <a href="#beranda" class="navlink">Beranda</a>
+      <a href="#tentang" class="navlink">Tentang</a>
+      <a href="#layanan" class="navlink">Layanan</a>
+      <a href="#keanggotaan" class="navlink">Keanggotaan</a>
+      <a href="#galeri" class="navlink">Galeri</a>
+      <a href="#kontak" class="navlink">Kontak</a>
+    </nav>
+
+    <a href="#keanggotaan" class="hidden lg:inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white text-sm font-semibold px-5 py-2.5 rounded-full transition-colors shadow-soft">
+      Gabung Sekarang <i data-lucide="arrow-right" class="w-4 h-4"></i>
+    </a>
+
+    <button id="menuBtn" class="lg:hidden text-secondary" aria-label="Buka menu">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+  </div>
+
+  <div id="mobileMenu" class="mobile-menu lg:hidden overflow-hidden max-h-0 opacity-0 bg-white border-t border-slate-100">
+    <div class="flex flex-col px-6 py-4 gap-4 text-sm font-medium text-ink">
+      <a href="#beranda" class="mobile-link">Beranda</a>
+      <a href="#tentang" class="mobile-link">Tentang</a>
+      <a href="#layanan" class="mobile-link">Layanan</a>
+      <a href="#keanggotaan" class="mobile-link">Keanggotaan</a>
+      <a href="#galeri" class="mobile-link">Galeri</a>
+      <a href="#kontak" class="mobile-link">Kontak</a>
+      <a href="#keanggotaan" class="mobile-link inline-flex items-center justify-center gap-2 bg-primary text-white font-semibold px-5 py-3 rounded-full mt-1">
+        Gabung Sekarang <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="beranda" class="relative min-h-screen flex items-center pt-14 pb-16 overflow-hidden dot-grid">
+  <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-72 h-72 bg-accent/10 rounded-full blur-3xl"></div>
+
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 grid lg:grid-cols-2 gap-14 items-center relative z-10">
+
+    <div class="reveal">
+      <span class="inline-flex items-center gap-2 bg-primary-light text-primary-dark text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
+        <i data-lucide="badge-check" class="w-3.5 h-3.5"></i> Berbadan Hukum Resmi Kemenkop UKM RI
+      </span>
+
+      <h1 class="font-heading font-bold text-4xl sm:text-5xl xl:text-[3.4rem] text-secondary leading-[1.12] mb-6">
+        Koperasi Simpan Pinjam<br>
+        <span class="text-primary">Sensasi Maju Bersama</span>
+      </h1>
+
+      <p class="text-lg text-slate-600 max-w-lg mb-9 leading-relaxed">
+        Membangun kesejahteraan bersama melalui keuangan yang aman dan transparan untuk anggota, untuk keluarga, untuk usaha yang terus tumbuh.
+      </p>
+
+      <div class="flex flex-wrap gap-4">
+        <a href="#keanggotaan" class="inline-flex items-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-7 py-3.5 rounded-full transition-colors shadow-soft">
+          Gabung Menjadi Anggota <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <a href="#layanan" class="inline-flex items-center gap-2 bg-white hover:bg-slate-50 text-secondary font-semibold px-7 py-3.5 rounded-full border border-slate-200 transition-colors">
+          Layanan Kami
+        </a>
+      </div>
+    </div>
+
+    <!-- Illustration: custom SVG, growth network -->
+    <div class="relative reveal float-slow">
+      <svg viewBox="0 0 520 480" class="w-full max-w-lg mx-auto">
+        <ellipse cx="260" cy="440" rx="190" ry="24" fill="#0F172A" opacity="0.05"/>
+
+        <!-- phone -->
+        <rect x="300" y="130" width="150" height="270" rx="24" fill="#0F172A"/>
+        <rect x="312" y="150" width="126" height="212" rx="4" fill="#F8FAFC"/>
+        <circle cx="375" cy="378" r="9" fill="#1E293B"/>
+
+        <!-- growth bars inside phone -->
+        <rect x="328" y="290" width="14" height="45" rx="3" fill="#10B981" opacity="0.35"/>
+        <rect x="350" y="265" width="14" height="70" rx="3" fill="#10B981" opacity="0.6"/>
+        <rect x="372" y="235" width="14" height="100" rx="3" fill="#10B981"/>
+        <rect x="394" y="205" width="14" height="130" rx="3" fill="#FACC15"/>
+
+        <path class="growth-line" d="M328 300 L350 275 L372 245 L394 200" stroke="#059669" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="394" cy="200" r="6" fill="#059669"/>
+
+        <!-- coin stack -->
+        <g>
+          <ellipse cx="120" cy="360" rx="55" ry="16" fill="#FACC15"/>
+          <rect x="65" y="330" width="110" height="30" fill="#FACC15"/>
+          <ellipse cx="120" cy="330" rx="55" ry="16" fill="#FDE047"/>
+          <ellipse cx="120" cy="330" rx="38" ry="10" fill="#FACC15" opacity="0.6"/>
+
+          <ellipse cx="120" cy="310" rx="55" ry="16" fill="#FACC15"/>
+          <rect x="65" y="285" width="110" height="25" fill="#FACC15"/>
+          <ellipse cx="120" cy="285" rx="55" ry="16" fill="#FDE047"/>
+          <ellipse cx="120" cy="285" rx="38" ry="10" fill="#FACC15" opacity="0.6"/>
+        </g>
+
+        <!-- person figure -->
+        <g>
+          <circle cx="150" cy="200" r="26" fill="#10B981"/>
+          <path d="M104 300 C104 250 196 250 196 300 L196 320 L104 320 Z" fill="#0F172A"/>
+        </g>
+
+        <!-- community dots / network representing kekeluargaan -->
+        <g stroke="#10B981" stroke-width="2" opacity="0.5">
+          <line x1="220" y1="90" x2="270" y2="130"/>
+          <line x1="270" y1="130" x2="235" y2="175"/>
+          <line x1="270" y1="130" x2="310" y2="95"/>
+        </g>
+        <circle cx="220" cy="90" r="9" fill="#0F172A"/>
+        <circle cx="270" cy="130" r="12" fill="#10B981"/>
+        <circle cx="235" cy="175" r="8" fill="#FACC15"/>
+        <circle cx="310" cy="95" r="8" fill="#0F172A"/>
+      </svg>
+    </div>
+  </div>
+
+  <a href="#tentang" class="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-slate-400 text-xs">
+    <span>Scroll</span>
+    <i data-lucide="chevron-down" class="w-4 h-4 animate-bounce"></i>
+  </a>
+</section>
+
+<!-- ============ STATISTIK ============ -->
+<section class="border-y border-slate-100 bg-white">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
+    <div class="text-center reveal">
+      <p class="font-heading font-bold text-2xl md:text-3xl text-primary" data-count-date="12 April 2024">12 April 2024</p>
+      <p class="text-sm text-slate-500 mt-1">Resmi Berdiri</p>
+    </div>
+    <div class="text-center reveal">
+      <p class="font-heading font-bold text-2xl md:text-3xl text-primary"><span class="counter" data-target="100">0</span>+</p>
+      <p class="text-sm text-slate-500 mt-1">Anggota Aktif</p>
+    </div>
+    <div class="text-center reveal">
+      <p class="font-heading font-bold text-2xl md:text-3xl text-primary"><span class="counter" data-target="5">0</span></p>
+      <p class="text-sm text-slate-500 mt-1">Layanan Tersedia</p>
+    </div>
+    <div class="text-center reveal">
+      <p class="font-heading font-bold text-2xl md:text-3xl text-primary"><span class="counter" data-target="100">0</span>%</p>
+      <p class="text-sm text-slate-500 mt-1">Transparan</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TENTANG ============ -->
+<section id="tentang" class="py-24 md:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+      <div class="reveal">
+        <span class="text-primary font-semibold text-sm tracking-wide uppercase">Tentang Kami</span>
+        <h2 class="font-heading font-bold text-3xl md:text-4xl text-secondary mt-3 mb-6 leading-tight">
+          Berawal dari Semangat<br>Kebersamaan
+        </h2>
+        <p class="text-slate-600 leading-relaxed mb-4">
+          Koperasi Simpan Pinjam Sensasi Maju Bersama lahir dari diskusi kelompok kecil masyarakat yang merasa kesulitan mengakses layanan keuangan formal. Dari sana muncul inisiatif menghimpun dana anggota dan menyalurkannya kembali dalam bentuk pinjaman dengan bunga ringan.
+        </p>
+        <p class="text-slate-600 leading-relaxed mb-8">
+          Sejak resmi berdiri, koperasi berkomitmen mengelola dana anggota secara profesional, transparan, dan akuntabel tumbuh menjadi lembaga keuangan mikro berbasis komunitas yang dipercaya karena kekeluargaan dan keterbukaannya.
+        </p>
+
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div class="flex items-start gap-2.5">
+            <i data-lucide="scroll-text" class="w-4 h-4 text-primary mt-0.5 shrink-0"></i>
+            <span class="text-slate-600">Badan Hukum No. 007345/BH/XII.2024</span>
+          </div>
+          <div class="flex items-start gap-2.5">
+            <i data-lucide="file-check-2" class="w-4 h-4 text-primary mt-0.5 shrink-0"></i>
+            <span class="text-slate-600">Akta Notaris Rina Puspita, SH., M.Kn.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- timeline: genuinely sequential -> numbered markers make sense -->
+      <div class="reveal">
+        <div class="relative pl-10">
+          <div class="absolute left-[15px] top-2 bottom-2 w-0.5 bg-primary/20"></div>
+
+          <div class="relative pb-10">
+            <div class="absolute -left-10 top-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">1</div>
+            <p class="font-heading font-semibold text-secondary">2024 &mdash; Didirikan</p>
+            <p class="text-sm text-slate-500 mt-1">Resmi berdiri 12 April 2024 dengan akta pendirian dan badan hukum yang sah.</p>
+          </div>
+          <div class="relative pb-10">
+            <div class="absolute -left-10 top-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">2</div>
+            <p class="font-heading font-semibold text-secondary">Melayani Anggota</p>
+            <p class="text-sm text-slate-500 mt-1">Membuka layanan simpan pinjam dengan prinsip kekeluargaan dan keterbukaan.</p>
+          </div>
+          <div class="relative pb-10">
+            <div class="absolute -left-10 top-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">3</div>
+            <p class="font-heading font-semibold text-secondary">Berkembang</p>
+            <p class="text-sm text-slate-500 mt-1">Bertumbuh dari sisi jumlah anggota, aset, hingga ragam layanan yang ditawarkan.</p>
+          </div>
+          <div class="relative">
+            <div class="absolute -left-10 top-0 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-xs font-bold">4</div>
+            <p class="font-heading font-semibold text-secondary">Mitra UMKM</p>
+            <p class="text-sm text-slate-500 mt-1">Memperluas dukungan lewat pendampingan usaha mikro, kecil, dan menengah.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISI & MISI ============ -->
+<section class="py-20 md:py-28 bg-secondary relative overflow-hidden">
+  <div class="absolute inset-0 dot-grid opacity-10"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative">
+    <div class="text-center mb-14 reveal">
+      <span class="text-accent font-semibold text-sm tracking-wide uppercase">Arah Kami</span>
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mt-3">Visi &amp; Misi</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="reveal card-hover bg-white/5 backdrop-blur-sm border border-white/10 rounded-card p-8 md:p-10">
+        <div class="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center mb-6">
+          <i data-lucide="eye" class="w-6 h-6 text-primary"></i>
+        </div>
+        <h3 class="font-heading font-semibold text-xl text-white mb-4">Visi</h3>
+        <p class="text-slate-300 leading-relaxed">
+          "Menjadi koperasi modern dan terpercaya dalam pelayanan simpan pinjam yang mampu meningkatkan kesejahteraan ekonomi anggota secara berkelanjutan."
+        </p>
+      </div>
+
+      <div class="reveal card-hover bg-white/5 backdrop-blur-sm border border-white/10 rounded-card p-8 md:p-10">
+        <div class="w-12 h-12 rounded-2xl bg-accent/20 flex items-center justify-center mb-6">
+          <i data-lucide="target" class="w-6 h-6 text-accent"></i>
+        </div>
+        <h3 class="font-heading font-semibold text-xl text-white mb-4">Misi</h3>
+        <ul class="space-y-3 text-slate-300 text-sm leading-relaxed">
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-4 h-4 text-primary shrink-0 mt-0.5"></i>Memberikan pelayanan keuangan yang cepat, tepat, dan mudah kepada anggota.</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-4 h-4 text-primary shrink-0 mt-0.5"></i>Mendorong partisipasi aktif anggota dalam kegiatan koperasi.</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-4 h-4 text-primary shrink-0 mt-0.5"></i>Menjalankan tata kelola yang profesional, transparan, dan akuntabel.</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-4 h-4 text-primary shrink-0 mt-0.5"></i>Meningkatkan literasi keuangan anggota lewat pelatihan dan pendampingan usaha.</li>
+          <li class="flex gap-2.5"><i data-lucide="check" class="w-4 h-4 text-primary shrink-0 mt-0.5"></i>Menjalin kerja sama strategis dengan pemerintah, swasta, dan koperasi lain.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LAYANAN ============ -->
+<section id="layanan" class="py-24 md:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-16 reveal">
+      <span class="text-primary font-semibold text-sm tracking-wide uppercase">Layanan Kami</span>
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-secondary mt-3">Produk Simpan Pinjam untuk Setiap Kebutuhan</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal card-hover bg-white rounded-card shadow-softer border border-slate-100 p-8">
+        <div class="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center mb-6">
+          <i data-lucide="wallet" class="w-6 h-6 text-primary"></i>
+        </div>
+        <h3 class="font-heading font-semibold text-lg text-secondary mb-2">Simpanan Pokok</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Setoran awal wajib bagi anggota baru sebagai syarat keanggotaan.</p>
+      </div>
+
+      <div class="reveal card-hover bg-white rounded-card shadow-softer border border-slate-100 p-8">
+        <div class="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center mb-6">
+          <i data-lucide="credit-card" class="w-6 h-6 text-primary"></i>
+        </div>
+        <h3 class="font-heading font-semibold text-lg text-secondary mb-2">Simpanan Wajib</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Setoran rutin bulanan dari setiap anggota koperasi.</p>
+      </div>
+
+      <div class="reveal card-hover bg-white rounded-card shadow-softer border border-slate-100 p-8">
+        <div class="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center mb-6">
+          <i data-lucide="piggy-bank" class="w-6 h-6 text-primary"></i>
+        </div>
+        <h3 class="font-heading font-semibold text-lg text-secondary mb-2">Simpanan Sukarela</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Simpanan tambahan yang dapat disetor anggota kapan saja.</p>
+      </div>
+
+      <div class="reveal card-hover bg-white rounded-card shadow-softer border border-slate-100 p-8">
+        <div class="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center mb-6">
+          <i data-lucide="trending-up" class="w-6 h-6 text-primary"></i>
+        </div>
+        <h3 class="font-heading font-semibold text-lg text-secondary mb-2">Pinjaman Anggota</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Fasilitas pinjaman dengan syarat mudah dan bunga kompetitif.</p>
+      </div>
+
+      <div class="reveal card-hover bg-white rounded-card shadow-softer border border-slate-100 p-8">
+        <div class="w-14 h-14 rounded-2xl bg-primary-light flex items-center justify-center mb-6">
+          <i data-lucide="handshake" class="w-6 h-6 text-primary"></i>
+        </div>
+        <h3 class="font-heading font-semibold text-lg text-secondary mb-2">Pendampingan UMKM</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Pelatihan keuangan dan peluang usaha kolektif bagi anggota.</p>
+      </div>
+
+      <div class="reveal card-hover bg-secondary rounded-card p-8 flex flex-col justify-center">
+        <p class="font-heading font-semibold text-lg text-white mb-2">Belum yakin layanan mana yang cocok?</p>
+        <p class="text-sm text-slate-300 mb-5">Tim kami siap membantu menyesuaikan dengan kebutuhan Anda.</p>
+        <a href="#kontak" class="inline-flex items-center gap-2 text-accent font-semibold text-sm">
+          Hubungi Kami <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KENAPA MEMILIH KAMI ============ -->
+<section class="py-24 md:py-32 bg-primary-light/50">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-16 reveal">
+      <span class="text-primary font-semibold text-sm tracking-wide uppercase">Keunggulan</span>
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-secondary mt-3">Kenapa Memilih Kami</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="reveal card-hover bg-white rounded-card shadow-softer p-7 flex items-start gap-4">
+        <div class="w-11 h-11 rounded-xl bg-primary-light flex items-center justify-center shrink-0"><i data-lucide="shield-check" class="w-5 h-5 text-primary"></i></div>
+        <div><p class="font-heading font-semibold text-secondary">Aman</p><p class="text-sm text-slate-500 mt-1">Dikelola sesuai badan hukum dan akta resmi.</p></div>
+      </div>
+      <div class="reveal card-hover bg-white rounded-card shadow-softer p-7 flex items-start gap-4">
+        <div class="w-11 h-11 rounded-xl bg-primary-light flex items-center justify-center shrink-0"><i data-lucide="zap" class="w-5 h-5 text-primary"></i></div>
+        <div><p class="font-heading font-semibold text-secondary">Cepat</p><p class="text-sm text-slate-500 mt-1">Proses pengajuan dan pencairan tanpa berbelit.</p></div>
+      </div>
+      <div class="reveal card-hover bg-white rounded-card shadow-softer p-7 flex items-start gap-4">
+        <div class="w-11 h-11 rounded-xl bg-primary-light flex items-center justify-center shrink-0"><i data-lucide="file-check" class="w-5 h-5 text-primary"></i></div>
+        <div><p class="font-heading font-semibold text-secondary">Legal</p><p class="text-sm text-slate-500 mt-1">Terdaftar resmi di Kementerian Koperasi dan UKM RI.</p></div>
+      </div>
+      <div class="reveal card-hover bg-white rounded-card shadow-softer p-7 flex items-start gap-4">
+        <div class="w-11 h-11 rounded-xl bg-primary-light flex items-center justify-center shrink-0"><i data-lucide="users" class="w-5 h-5 text-primary"></i></div>
+        <div><p class="font-heading font-semibold text-secondary">Kekeluargaan</p><p class="text-sm text-slate-500 mt-1">Mengutamakan gotong royong antar anggota.</p></div>
+      </div>
+      <div class="reveal card-hover bg-white rounded-card shadow-softer p-7 flex items-start gap-4">
+        <div class="w-11 h-11 rounded-xl bg-primary-light flex items-center justify-center shrink-0"><i data-lucide="line-chart" class="w-5 h-5 text-primary"></i></div>
+        <div><p class="font-heading font-semibold text-secondary">Transparan</p><p class="text-sm text-slate-500 mt-1">Laporan keuangan terbuka bagi seluruh anggota.</p></div>
+      </div>
+      <div class="reveal card-hover bg-white rounded-card shadow-softer p-7 flex items-start gap-4">
+        <div class="w-11 h-11 rounded-xl bg-primary-light flex items-center justify-center shrink-0"><i data-lucide="smartphone" class="w-5 h-5 text-primary"></i></div>
+        <div><p class="font-heading font-semibold text-secondary">Mudah</p><p class="text-sm text-slate-500 mt-1">Pengajuan dan informasi dapat diakses kapan saja.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRUKTUR ORGANISASI ============ -->
+<section id="struktur" class="py-24 md:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-16 reveal">
+      <span class="text-primary font-semibold text-sm tracking-wide uppercase">Kepengurusan</span>
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-secondary mt-3">Struktur Organisasi</h2>
+      <p class="text-slate-500 max-w-xl mx-auto mt-4">Dijalankan oleh pengurus yang bertanggung jawab langsung kepada Rapat Anggota sebagai pemegang kekuasaan tertinggi koperasi.</p>
+    </div>
+
+    <div class="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto mb-14">
+      <div class="reveal card-hover bg-white rounded-card shadow-softer border border-slate-100 p-7 text-center">
+        <div class="w-20 h-20 rounded-full bg-secondary mx-auto mb-5 flex items-center justify-center">
+          <i data-lucide="user" class="w-9 h-9 text-primary"></i>
+        </div>
+        <p class="text-xs font-semibold text-primary uppercase tracking-wide mb-1">Ketua</p>
+        <p class="font-heading font-semibold text-secondary">Irwanto</p>
+      </div>
+      <div class="reveal card-hover bg-white rounded-card shadow-softer border border-slate-100 p-7 text-center">
+        <div class="w-20 h-20 rounded-full bg-secondary mx-auto mb-5 flex items-center justify-center">
+          <i data-lucide="user" class="w-9 h-9 text-primary"></i>
+        </div>
+        <p class="text-xs font-semibold text-primary uppercase tracking-wide mb-1">Sekretaris</p>
+        <p class="font-heading font-semibold text-secondary">Tya</p>
+      </div>
+      <div class="reveal card-hover bg-white rounded-card shadow-softer border border-slate-100 p-7 text-center">
+        <div class="w-20 h-20 rounded-full bg-secondary mx-auto mb-5 flex items-center justify-center">
+          <i data-lucide="user" class="w-9 h-9 text-primary"></i>
+        </div>
+        <p class="text-xs font-semibold text-primary uppercase tracking-wide mb-1">Bendahara</p>
+        <p class="font-heading font-semibold text-secondary">Yeyen</p>
+      </div>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 text-sm reveal">
+      <div class="bg-primary-light/60 rounded-card p-5">
+        <p class="font-heading font-semibold text-secondary mb-1.5">Rapat Anggota</p>
+        <p class="text-slate-500">Pemegang kekuasaan tertinggi; menetapkan kebijakan dan memilih pengurus.</p>
+      </div>
+      <div class="bg-primary-light/60 rounded-card p-5">
+        <p class="font-heading font-semibold text-secondary mb-1.5">Pengawas</p>
+        <p class="text-slate-500">Mengawasi dan mengevaluasi kinerja pengurus serta keuangan koperasi.</p>
+      </div>
+      <div class="bg-primary-light/60 rounded-card p-5">
+        <p class="font-heading font-semibold text-secondary mb-1.5">Manajer Operasional</p>
+        <p class="text-slate-500">Menjalankan aktivitas harian dan melapor kepada pengurus.</p>
+      </div>
+      <div class="bg-primary-light/60 rounded-card p-5">
+        <p class="font-heading font-semibold text-secondary mb-1.5">Staf Administrasi</p>
+        <p class="text-slate-500">Mencatat, melapor, dan melayani kebutuhan anggota sehari-hari.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KEANGGOTAAN ============ -->
+<section id="keanggotaan" class="py-24 md:py-32 bg-secondary relative overflow-hidden">
+  <div class="absolute inset-0 dot-grid opacity-10"></div>
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 relative">
+    <div class="text-center mb-16 reveal">
+      <span class="text-accent font-semibold text-sm tracking-wide uppercase">Cara Bergabung</span>
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-white mt-3">Empat Langkah Menjadi Anggota</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+      <div class="reveal text-center">
+        <div class="w-16 h-16 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center mx-auto mb-5">
+          <i data-lucide="user-plus" class="w-7 h-7 text-primary"></i>
+        </div>
+        <p class="font-heading font-semibold text-white mb-1.5">1. Daftar</p>
+        <p class="text-sm text-slate-400">Isi formulir pendaftaran keanggotaan koperasi.</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-16 h-16 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center mx-auto mb-5">
+          <i data-lucide="clipboard-check" class="w-7 h-7 text-primary"></i>
+        </div>
+        <p class="font-heading font-semibold text-white mb-1.5">2. Verifikasi</p>
+        <p class="text-sm text-slate-400">Data dan kelengkapan syarat diperiksa oleh pengurus.</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-16 h-16 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center mx-auto mb-5">
+          <i data-lucide="banknote" class="w-7 h-7 text-primary"></i>
+        </div>
+        <p class="font-heading font-semibold text-white mb-1.5">3. Bayar Simpanan Pokok</p>
+        <p class="text-sm text-slate-400">Melunasi setoran awal sebagai syarat keanggotaan.</p>
+      </div>
+      <div class="reveal text-center">
+        <div class="w-16 h-16 rounded-2xl bg-primary flex items-center justify-center mx-auto mb-5">
+          <i data-lucide="badge-check" class="w-7 h-7 text-white"></i>
+        </div>
+        <p class="font-heading font-semibold text-white mb-1.5">4. Resmi Menjadi Anggota</p>
+        <p class="text-sm text-slate-400">Menikmati seluruh hak dan layanan koperasi.</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6 reveal">
+      <div class="bg-white/5 border border-white/10 rounded-card p-7">
+        <p class="font-heading font-semibold text-white mb-3">Syarat Menjadi Anggota</p>
+        <ul class="space-y-2.5 text-sm text-slate-300">
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-primary shrink-0 mt-0.5"></i>WNI berusia minimal 18 tahun atau sudah menikah.</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-primary shrink-0 mt-0.5"></i>Menyetujui AD/ART koperasi.</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-primary shrink-0 mt-0.5"></i>Membayar simpanan pokok dan wajib.</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-primary shrink-0 mt-0.5"></i>Aktif berpartisipasi dalam kegiatan koperasi.</li>
+        </ul>
+      </div>
+      <div class="bg-white/5 border border-white/10 rounded-card p-7">
+        <p class="font-heading font-semibold text-white mb-3">Hak Sebagai Anggota</p>
+        <ul class="space-y-2.5 text-sm text-slate-300">
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-accent shrink-0 mt-0.5"></i>Menghadiri dan memberi suara dalam rapat anggota.</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-accent shrink-0 mt-0.5"></i>Mengusulkan dan menyampaikan pendapat.</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-accent shrink-0 mt-0.5"></i>Memilih dan dipilih menjadi pengurus atau pengawas.</li>
+          <li class="flex gap-2"><i data-lucide="check" class="w-4 h-4 text-accent shrink-0 mt-0.5"></i>Mendapatkan pembagian Sisa Hasil Usaha (SHU).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALERI ============ -->
+<section id="galeri" class="py-24 md:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-16 reveal">
+      <span class="text-primary font-semibold text-sm tracking-wide uppercase">Galeri</span>
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-secondary mt-3">Momen Kebersamaan Kami</h2>
+      <p class="text-slate-500 max-w-xl mx-auto mt-4">Ganti setiap kotak berikut dengan foto kegiatan koperasi Anda.</p>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-5">
+      <!-- 6 placeholder tiles -->
+      <div class="reveal card-hover aspect-square rounded-card bg-gradient-to-br from-primary to-primary-dark flex flex-col items-center justify-center text-white p-4 text-center">
+        <i data-lucide="users" class="w-8 h-8 mb-2 opacity-90"></i>
+        <p class="text-xs font-medium opacity-90">Rapat Anggota</p>
+      </div>
+      <div class="reveal card-hover aspect-square rounded-card bg-gradient-to-br from-secondary to-slate-700 flex flex-col items-center justify-center text-white p-4 text-center">
+        <i data-lucide="graduation-cap" class="w-8 h-8 mb-2 opacity-90"></i>
+        <p class="text-xs font-medium opacity-90">Pelatihan UMKM</p>
+      </div>
+      <div class="reveal card-hover aspect-square rounded-card bg-gradient-to-br from-accent to-yellow-500 flex flex-col items-center justify-center text-secondary p-4 text-center">
+        <i data-lucide="hand-coins" class="w-8 h-8 mb-2"></i>
+        <p class="text-xs font-medium">Penyaluran Pinjaman</p>
+      </div>
+      <div class="reveal card-hover aspect-square rounded-card bg-gradient-to-br from-slate-700 to-secondary flex flex-col items-center justify-center text-white p-4 text-center">
+        <i data-lucide="store" class="w-8 h-8 mb-2 opacity-90"></i>
+        <p class="text-xs font-medium opacity-90">Mitra UMKM</p>
+      </div>
+      <div class="reveal card-hover aspect-square rounded-card bg-gradient-to-br from-primary-dark to-primary flex flex-col items-center justify-center text-white p-4 text-center">
+        <i data-lucide="heart-handshake" class="w-8 h-8 mb-2 opacity-90"></i>
+        <p class="text-xs font-medium opacity-90">Kegiatan Sosial</p>
+      </div>
+      <div class="reveal card-hover aspect-square rounded-card bg-gradient-to-br from-yellow-400 to-accent flex flex-col items-center justify-center text-secondary p-4 text-center">
+        <i data-lucide="award" class="w-8 h-8 mb-2"></i>
+        <p class="text-xs font-medium">Pencapaian Koperasi</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" class="py-24 md:py-32 bg-primary-light/50">
+  <div class="max-w-3xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-14 reveal">
+      <span class="text-primary font-semibold text-sm tracking-wide uppercase">FAQ</span>
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-secondary mt-3">Pertanyaan yang Sering Diajukan</h2>
+    </div>
+
+    <div class="space-y-4" id="faqList">
+      <div class="reveal faq-item bg-white rounded-card shadow-softer border border-slate-100">
+        <button class="faq-btn w-full flex items-center justify-between text-left p-6">
+          <span class="font-heading font-semibold text-secondary">Siapa saja yang boleh bergabung menjadi anggota?</span>
+          <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-primary shrink-0 transition-transform"></i>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+          <p class="px-6 pb-6 text-sm text-slate-500 leading-relaxed">Warga negara Indonesia berusia minimal 18 tahun atau sudah menikah, yang bersedia mematuhi AD/ART koperasi.</p>
+        </div>
+      </div>
+
+      <div class="reveal faq-item bg-white rounded-card shadow-softer border border-slate-100">
+        <button class="faq-btn w-full flex items-center justify-between text-left p-6">
+          <span class="font-heading font-semibold text-secondary">Apakah koperasi ini berbadan hukum resmi?</span>
+          <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-primary shrink-0 transition-transform"></i>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+          <p class="px-6 pb-6 text-sm text-slate-500 leading-relaxed">Ya. Koperasi berbadan hukum Nomor 007345/BH/XII.2024 yang diterbitkan oleh Kementerian Koperasi dan UKM Republik Indonesia.</p>
+        </div>
+      </div>
+
+      <div class="reveal faq-item bg-white rounded-card shadow-softer border border-slate-100">
+        <button class="faq-btn w-full flex items-center justify-between text-left p-6">
+          <span class="font-heading font-semibold text-secondary">Bagaimana cara mengajukan pinjaman?</span>
+          <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-primary shrink-0 transition-transform"></i>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+          <p class="px-6 pb-6 text-sm text-slate-500 leading-relaxed">Anggota aktif dapat mengajukan pinjaman melalui pengurus dengan syarat mudah dan bunga kompetitif sesuai ketentuan koperasi.</p>
+        </div>
+      </div>
+
+      <div class="reveal faq-item bg-white rounded-card shadow-softer border border-slate-100">
+        <button class="faq-btn w-full flex items-center justify-between text-left p-6">
+          <span class="font-heading font-semibold text-secondary">Apa itu Sisa Hasil Usaha (SHU)?</span>
+          <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-primary shrink-0 transition-transform"></i>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+          <p class="px-6 pb-6 text-sm text-slate-500 leading-relaxed">SHU adalah pembagian keuntungan koperasi kepada anggota, sebagai salah satu hak anggota yang aktif berpartisipasi.</p>
+        </div>
+      </div>
+
+      <div class="reveal faq-item bg-white rounded-card shadow-softer border border-slate-100">
+        <button class="faq-btn w-full flex items-center justify-between text-left p-6">
+          <span class="font-heading font-semibold text-secondary">Bagaimana koperasi menjaga transparansi keuangan?</span>
+          <i data-lucide="chevron-down" class="faq-icon w-5 h-5 text-primary shrink-0 transition-transform"></i>
+        </button>
+        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+          <p class="px-6 pb-6 text-sm text-slate-500 leading-relaxed">Laporan keuangan dipertanggungjawabkan pengurus setiap Rapat Anggota, sebagai pemegang kekuasaan tertinggi koperasi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONTAK ============ -->
+<section id="kontak" class="py-24 md:py-32">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="text-center mb-16 reveal">
+      <span class="text-primary font-semibold text-sm tracking-wide uppercase">Kontak</span>
+      <h2 class="font-heading font-bold text-3xl md:text-4xl text-secondary mt-3">Hubungi Kami</h2>
+    </div>
+
+    <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+      <div class="reveal rounded-card overflow-hidden shadow-soft border border-slate-100 min-h-[340px]">
+        <iframe
+          src="https://www.google.com/maps?q=Museum+Gedung+Juang+Tambun+Bekasi&output=embed"
+          class="w-full h-full min-h-[340px]" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+
+      <div class="reveal bg-white rounded-card shadow-soft border border-slate-100 p-8 md:p-10 flex flex-col justify-between">
+        <div class="space-y-6">
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-primary-light flex items-center justify-center shrink-0"><i data-lucide="map-pin" class="w-5 h-5 text-primary"></i></div>
+            <div>
+              <p class="font-heading font-semibold text-secondary text-sm mb-1">Alamat</p>
+              <p class="text-sm text-slate-500 leading-relaxed">Museum Gedung Juang, Jl. Sultan Hasanudin, Kel. Mekarsari, Kec. Tambun Selatan, Kab. Bekasi, Jawa Barat</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-primary-light flex items-center justify-center shrink-0"><i data-lucide="phone" class="w-5 h-5 text-primary"></i></div>
+            <div>
+              <p class="font-heading font-semibold text-secondary text-sm mb-1">WhatsApp / Telepon</p>
+              <p class="text-sm text-slate-500">0813-8475-7957</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-primary-light flex items-center justify-center shrink-0"><i data-lucide="mail" class="w-5 h-5 text-primary"></i></div>
+            <div>
+              <p class="font-heading font-semibold text-secondary text-sm mb-1">Email</p>
+              <p class="text-sm text-slate-500">koperasisensasimajubersama@gmail.com</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-4">
+            <div class="w-11 h-11 rounded-xl bg-primary-light flex items-center justify-center shrink-0"><i data-lucide="instagram" class="w-5 h-5 text-primary"></i></div>
+            <div>
+              <p class="font-heading font-semibold text-secondary text-sm mb-1">Instagram</p>
+              <p class="text-sm text-slate-500">@koperasisensasi_majubersama</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://wa.me/6281384757957" target="_blank" class="mt-8 inline-flex items-center justify-center gap-2 bg-primary hover:bg-primary-dark text-white font-semibold px-6 py-3.5 rounded-full transition-colors shadow-soft">
+          <i data-lucide="message-circle" class="w-4 h-4"></i> Hubungi Kami
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-secondary pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8">
+    <div class="grid md:grid-cols-3 gap-10 pb-10 border-b border-white/10">
+      <div>
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="w-9 h-9 rounded-xl bg-primary flex items-center justify-center"><i data-lucide="landmark" class="w-5 h-5 text-white"></i></div>
+          <span class="font-heading font-semibold text-white">Sensasi Maju Bersama</span>
+        </div>
+        <p class="text-sm text-slate-400 leading-relaxed max-w-xs">Membangun kesejahteraan bersama melalui keuangan yang aman dan transparan.</p>
+      </div>
+
+      <div>
+        <p class="text-white font-heading font-semibold text-sm mb-4">Kontak</p>
+        <ul class="space-y-2.5 text-sm text-slate-400">
+          <li>Museum Gedung Juang, Jl. Sultan Hasanudin, Tambun Selatan, Bekasi</li>
+          <li>koperasisensasimajubersama@gmail.com</li>
+          <li>0813-8475-7957</li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="text-white font-heading font-semibold text-sm mb-4">Tautan</p>
+        <ul class="space-y-2.5 text-sm text-slate-400">
+          <li><a href="#tentang" class="hover:text-primary transition-colors">Tentang Kami</a></li>
+          <li><a href="#layanan" class="hover:text-primary transition-colors">Layanan</a></li>
+          <li><a href="#keanggotaan" class="hover:text-primary transition-colors">Keanggotaan</a></li>
+          <li><a href="https://instagram.com/koperasisensasi_majubersama" target="_blank" class="hover:text-primary transition-colors">Instagram</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="text-center text-xs text-slate-500 pt-6">&copy; 2026 Koperasi Sensasi Maju Bersama. Seluruh hak cipta dilindungi.</p>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+
+  // Navbar scroll style
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) navbar.classList.add('shadow-soft');
+    else navbar.classList.remove('shadow-soft');
+  });
+
+  // Mobile menu
+  const menuBtn = document.getElementById('menuBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  let menuOpen = false;
+  function closeMenu() {
+    menuOpen = false;
+    mobileMenu.style.maxHeight = '0px';
+    mobileMenu.style.opacity = '0';
+    menuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+    lucide.createIcons();
+  }
+  menuBtn.addEventListener('click', () => {
+    menuOpen = !menuOpen;
+    if (menuOpen) {
+      mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+      mobileMenu.style.opacity = '1';
+      menuBtn.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
+    } else {
+      closeMenu();
+    }
+    lucide.createIcons();
+  });
+  document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', closeMenu));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObserver.observe(el));
+
+  // Counter animation
+  const counters = document.querySelectorAll('.counter');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.target, 10);
+        let current = 0;
+        const step = Math.max(1, Math.ceil(target / 40));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= target) { current = target; clearInterval(timer); }
+          el.textContent = current;
+        }, 30);
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObserver.observe(c));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const btn = item.querySelector('.faq-btn');
+    const content = item.querySelector('.faq-content');
+    const icon = item.querySelector('.faq-icon');
+    btn.addEventListener('click', () => {
+      const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+      document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = '0px');
+      document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = 'rotate(0deg)');
+      if (!isOpen) {
+        content.style.maxHeight = content.scrollHeight + 'px';
+        icon.style.transform = 'rotate(180deg)';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
